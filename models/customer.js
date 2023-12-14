@@ -26,6 +26,7 @@ class Customer {
        FROM customers
        ORDER BY last_name, first_name`
     );
+    console.log(results.rows)
     return results.rows.map(c => new Customer(c));
   }
 
@@ -57,6 +58,10 @@ class Customer {
 
   async getReservations() {
     return await Reservation.getReservationsForCustomer(this.id);
+  }
+
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
   }
 
   /** save this customer. */
